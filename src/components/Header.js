@@ -20,7 +20,7 @@ const Header = ({ title, onAdd, showAdd }) => {
 }
 
 Header.defaultProps = {
-  title: 'Task Tracker',
+  title: 'DJ Mix Sim',
 }
 
 Header.propTypes = {
