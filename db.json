@@ -21,7 +21,7 @@
     {
       "text": "yay did something",
       "day": "now ",
-      "reminder": true,
+      "reminder": false,
       "id": 4
     }
   ]
