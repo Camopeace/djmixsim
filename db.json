@@ -1,12 +1,6 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "text": "Sleep",
-      "day": "Feb 6th at 10:00 pm",
-      "reminder": true
-    },
-    {
       "id": 2,
       "text": "wash car",
       "day": "Feb 10th at 10:00 pm",
@@ -19,16 +13,16 @@
       "reminder": true
     },
     {
-      "text": "yay did something",
-      "day": "now ",
-      "reminder": false,
-      "id": 4
-    },
-    {
       "text": "good work cam u did it",
       "day": "now now now",
-      "reminder": false,
+      "reminder": true,
       "id": 5
+    },
+    {
+      "text": "doing it ",
+      "day": "all day",
+      "reminder": true,
+      "id": 6
     }
   ]
 }
