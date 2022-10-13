@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const AddTask = ({ onAdd }) => {
+const AddTrack = ({ onAdd }) => {
   const [text, setText] = useState('')
   const [day, setDay] = useState('')
   const [reminder, setReminder] = useState(false)
@@ -10,7 +10,7 @@ const AddTask = ({ onAdd }) => {
     e.preventDefault()
 
     if (!text) {
-      alert('Please add a task')
+      alert('Please add a track')
       return
     }
 
@@ -24,10 +24,10 @@ const AddTask = ({ onAdd }) => {
   return (
     <form className='add-form' onSubmit={onSubmit}>
       <div className='form-control'>
-        <label>Task</label>
+        <label>Track</label>
         <input
           type='text'
-          placeholder='Add Task'
+          placeholder='Add Track'
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
@@ -51,9 +51,9 @@ const AddTask = ({ onAdd }) => {
         />
       </div>
 
-      <input type='submit' value='Save Task' className='btn btn-block' />
+      <input type='submit' value='Save Track' className='btn btn-block' />
     </form>
   )
 }
 
-export default AddTask
+export default AddTrack

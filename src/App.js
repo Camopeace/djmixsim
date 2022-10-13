@@ -3,87 +3,87 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Tasks from './components/Tasks'
-import AddTask from './components/AddTask'
+import Tracks from './components/Tracks'
+import AddTrack from './components/AddTrack'
 import About from './components/About'
 
 const App = () => {
-  const [showAddTask, setShowAddTask] = useState(false)
-  const [tasks, setTasks] = useState([])
+  const [showAddTrack, setShowAddTrack] = useState(false)
+  const [tracks, setTracks] = useState([])
 
   useEffect(() => {
-    const getTasks = async () => {
-      const tasksFromServer = await fetchTasks()
-      setTasks(tasksFromServer)
+    const getTracks = async () => {
+      const tracksFromServer = await fetchTracks()
+      setTracks(tracksFromServer)
     }
 
-    getTasks()
+    getTracks()
   }, [])
 
-  // Fetch Tasks
-  const fetchTasks = async () => {
-    const res = await fetch('http://localhost:5000/tasks')
+  // Fetch Tracks
+  const fetchTracks = async () => {
+    const res = await fetch('http://localhost:5000/tracks')
     const data = await res.json()
 
     return data
   }
 
-  // Fetch Task
-  const fetchTask = async (id) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`)
+  // Fetch Track
+  const fetchTrack = async (id) => {
+    const res = await fetch(`http://localhost:5000/tracks/${id}`)
     const data = await res.json()
 
     return data
   }
 
-  // Add Task
-  const addTask = async (task) => {
-    const res = await fetch('http://localhost:5000/tasks', {
+  // Add Track
+  const addTrack = async (track) => {
+    const res = await fetch('http://localhost:5000/tracks', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(task),
+      body: JSON.stringify(track),
     })
 
     const data = await res.json()
 
-    setTasks([...tasks, data])
+    setTracks([...tracks, data])
 
     // const id = Math.floor(Math.random() * 10000) + 1
-    // const newTask = { id, ...task }
-    // setTasks([...tasks, newTask])
+    // const newTrack = { id, ...track }
+    // setTracks([...tracks, newTrack])
   }
 
-  // Delete Task
-  const deleteTask = async (id) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+  // Delete Track
+  const deleteTrack = async (id) => {
+    const res = await fetch(`http://localhost:5000/tracks/${id}`, {
       method: 'DELETE',
     })
     //We should control the response status to decide if we will change the state or not.
     res.status === 200
-      ? setTasks(tasks.filter((task) => task.id !== id))
-      : alert('Error Deleting This Task')
+      ? setTracks(tracks.filter((track) => track.id !== id))
+      : alert('Error Deleting This Track')
   }
 
   // Toggle Reminder
   const toggleReminder = async (id) => {
-    const taskToToggle = await fetchTask(id)
-    const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder }
+    const trackToToggle = await fetchTrack(id)
+    const updTrack = { ...trackToToggle, reminder: !trackToToggle.reminder }
 
-    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+    const res = await fetch(`http://localhost:5000/tracks/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(updTask),
+      body: JSON.stringify(updTrack),
     })
 
     const data = await res.json()
 
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, reminder: data.reminder } : task
+    setTracks(
+      tracks.map((track) =>
+        track.id === id ? { ...track, reminder: data.reminder } : track
       )
     )
   }
@@ -92,23 +92,23 @@ const App = () => {
     <Router>
       <div className='container'>
         <Header
-          onAdd={() => setShowAddTask(!showAddTask)}
-          showAdd={showAddTask}
+          onAdd={() => setShowAddTrack(!showAddTrack)}
+          showAdd={showAddTrack}
         />
         <Routes>
           <Route
             path='/'
             element={
               <>
-                {showAddTask && <AddTask onAdd={addTask} />}
-                {tasks.length > 0 ? (
-                  <Tasks
-                    tasks={tasks}
-                    onDelete={deleteTask}
+                {showAddTrack && <AddTrack onAdd={addTrack} />}
+                {tracks.length > 0 ? (
+                  <Tracks
+                    tracks={tracks}
+                    onDelete={deleteTrack}
                     onToggle={toggleReminder}
                   />
                 ) : (
-                  'No Tasks To Show'
+                  'No Tracks To Show'
                 )}
               </>
             }
