@@ -1,12 +1,6 @@
 {
   "tracks": [
     {
-      "id": 2,
-      "text": "wash car",
-      "day": "Feb 10th at 10:00 pm",
-      "reminder": true
-    },
-    {
       "id": 3,
       "text": "walk dog",
       "day": "Feb 12th at 6:00 pm",
