@@ -11,8 +11,8 @@ const Header = ({ title, onAdd, showAdd }) => {
       <h1>{title}</h1>
       {location.pathname === '/' && (
         <Button
-          color={showAdd ? 'red' : 'green'}
-          text={showAdd ? 'Close' : 'Add'}
+          color={showAdd ? 'darkgrey' : 'limegreen'}
+          text={showAdd ? 'X' : 'Add Track'}
           onClick={onAdd}
         />
       )}
@@ -21,7 +21,7 @@ const Header = ({ title, onAdd, showAdd }) => {
 }
 
 Header.defaultProps = {
-  title: 'DJ Mix Sim',
+  title: 'DJ Mix Sim 1900',
 }
 
 Header.propTypes = {
